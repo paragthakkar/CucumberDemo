@@ -26,15 +26,16 @@ public class LoginStepDefinition {
 	    Assert.assertEquals("CURA Healthcare Service", pageTitle);
 	}
 
-	@Then("^user enters the username and password$")
-	public void user_enters_the_username_and_password() throws Throwable {
-	    driver.findElement(By.id("txt-username")).sendKeys("John Doe");;
-	    driver.findElement(By.id("txt-password")).sendKeys("ThisIsNotAPassword");
+	@Then("^user enters the \"(.*)\" and \"(.*)\"$")
+	public void user_enters_the_username_and_password(String username, String password) throws Throwable {
+	    driver.findElement(By.id("txt-username")).sendKeys(username);;
+	    driver.findElement(By.id("txt-password")).sendKeys(password);
 	}
 
 	@Then("^clicks on the login button$")
 	public void clicks_on_the_login_button() throws Throwable {
 		driver.findElement(By.id("btn-login")).click();
+		Thread.sleep(3000);
 		driver.quit();
 	}
 
